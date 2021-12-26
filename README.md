@@ -2,6 +2,7 @@
 
 My website [San2Art](https://www.san2.co.in/)
 You can use the [editor on GitHub](https://github.com/San2biswas/San2Art/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
+This website [https://san2biswas.github.io/San2Art/](https://san2biswas.github.io/San2Art/)
 
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
