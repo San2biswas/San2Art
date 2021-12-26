@@ -1,5 +1,6 @@
-## Welcome to GitHub Pages
+## Welcome San2 Art
 
+My website [San2Art](https://www.san2.co.in/)
 You can use the [editor on GitHub](https://github.com/San2biswas/San2Art/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
 
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
