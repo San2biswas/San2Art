@@ -9,14 +9,13 @@ Group {
  note_font_color 0x6aff55ff
  selected true
  xpos -360
- ypos 481
+ ypos 479
  addUserKnob {20 alphaQCTab l "Alpha QC"}
  addUserKnob {26 creator l "" +STARTLINE T "<br>\nS2_AlphaCheck v01\n\nby <font color='red'>San2</font>"}
  addUserKnob {26 ""}
  addUserKnob {41 alphaQCTool l "Alpha QC Tool" T Switch1.alphaQCTool}
  addUserKnob {26 ""}
  addUserKnob {20 alphaCheckOption l "Alpha Check Option" n 1}
- alphaCheckOption 0
  addUserKnob {41 matteColor l "Matte Color" T S2_MatteCheck.matteColor}
  addUserKnob {41 matteColorMix l "Matte Color Mix" T S2_MatteCheck.matteColorMix}
  addUserKnob {41 matteBgOn l "Matte Bg On/Off" T S2_MatteCheck.matteBgOn}
@@ -56,7 +55,6 @@ Group {
  Input {
   inputs 0
   name InputAlpha
-  selected true
   xpos -12
   ypos -35
   number 1
@@ -101,6 +99,7 @@ set N7925e800 [stack 0]
   name S2_MatteCheck
   tile_color 0x7f00ffff
   note_font_color 0x6aff55ff
+  selected true
   xpos -690
   ypos 256
   addUserKnob {20 User}
@@ -161,10 +160,8 @@ set N7925e800 [stack 0]
    xpos 127
    ypos -380
   }
-  Shuffle2 {
-   fromInput1 {{0} B}
-   fromInput2 {{0} B}
-   name Shuffle1
+  Shuffle {
+   name Shuffle3
    xpos 93
    ypos -286
   }
@@ -180,10 +177,8 @@ set N7925e800 [stack 0]
    xpos -32
    ypos -356
   }
-  Shuffle2 {
-   fromInput1 {{0} B}
-   fromInput2 {{0} B}
-   name Shuffle2
+  Shuffle {
+   name Shuffle1
    xpos -66
    ypos -284
   }
@@ -272,8 +267,10 @@ push $N7920ec00
    operation under
    bbox B
    name Merge4
+   selected true
    xpos 93
    ypos 213
+   disable {{!parent.matteBgOn}}
   }
   Dot {
    name Dot36
@@ -309,10 +306,8 @@ push $N7925ec00
   xpos -244
   ypos 192
  }
- Shuffle2 {
-  fromInput1 {{0} B}
-  fromInput2 {{0} B}
-  mappings "4 rgba.alpha 0 3 rgba.alpha 0 3 rgba.alpha 0 3 rgba.red 0 0 rgba.alpha 0 3 rgba.green 0 1 rgba.alpha 0 3 rgba.blue 0 2"
+ Shuffle {
+  in alpha
   name Shuffle1
   xpos -244
   ypos 228
