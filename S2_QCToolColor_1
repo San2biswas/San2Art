@@ -1,0 +1,224 @@
+set cut_paste_input [stack 0]
+version 13.0 v4
+push $cut_paste_input
+Group {
+ name S2_QCToolColor_1
+ help "S2_QCToolColor v01\nby San2\n\nabout:-\nthis node is created to check the qc level\n\nuse:-\ncolor qc tool : change the type of qc\n\nthanks and regards\nSan2\n\nany furthur issue feel free to contact me - \nsantu.santu.biswas@gmail.com"
+ tile_color 0x7f00ffff
+ label "Color  QC Tool : \[value colorQCTool]"
+ note_font_color 0x6aff55ff
+ selected true
+ xpos -366
+ ypos 543
+ addUserKnob {20 User}
+ addUserKnob {26 creator l "" +STARTLINE T "<br>\nS2_QCToolColor v01\n\nby <font color='red'>San2</font>"}
+ addUserKnob {26 ""}
+ addUserKnob {41 colorQCTool l "Color QC Tool" T Switch1.colorQCTool}
+ addUserKnob {41 saturation T Saturation1.saturation}
+}
+ BackdropNode {
+  inputs 0
+  name BackdropNode1
+  tile_color 0x8e388e00
+  label "color channel test"
+  note_font_size 42
+  xpos -1073
+  ypos -49
+  bdwidth 1371
+  bdheight 367
+ }
+ Input {
+  inputs 0
+  name InputSource
+  xpos 146
+  ypos -18
+ }
+ Dot {
+  name Dot6
+  xpos 180
+  ypos 31
+ }
+set N791bc800 [stack 0]
+ Dot {
+  name Dot7
+  xpos -121
+  ypos 31
+ }
+set N791bc400 [stack 0]
+ Dot {
+  name Dot9
+  xpos -321
+  ypos 31
+ }
+set N79183c00 [stack 0]
+ Dot {
+  name Dot11
+  xpos -574
+  ypos 31
+ }
+set N79183800 [stack 0]
+ Dot {
+  name Dot18
+  xpos -900
+  ypos 31
+ }
+ Dot {
+  name Dot15
+  xpos -900
+  ypos 80
+ }
+set N79183000 [stack 0]
+ Dot {
+  name Dot16
+  xpos -1029
+  ypos 80
+ }
+ Saturation {
+  saturation 0
+  name Saturation3
+  xpos -1063
+  ypos 148
+ }
+push $N79183000
+ Merge2 {
+  inputs 2
+  operation from
+  output rgb
+  name Merge3
+  xpos -934
+  ypos 148
+ }
+ Dot {
+  name Dot17
+  label "color variation against luminance"
+  xpos -900
+  ypos 220
+ }
+push $N79183800
+ Dot {
+  name Dot12
+  xpos -574
+  ypos 82
+ }
+set N79181c00 [stack 0]
+push $N79181c00
+ Dot {
+  name Dot13
+  xpos -703
+  ypos 82
+ }
+ Saturation {
+  saturation 0
+  name Saturation2
+  xpos -737
+  ypos 150
+ }
+ Merge2 {
+  inputs 2
+  operation divide
+  output rgb
+  name Merge2
+  xpos -608
+  ypos 150
+ }
+ Grade {
+  white 0.4
+  black_clamp false
+  name Grade5
+  xpos -608
+  ypos 174
+ }
+ Dot {
+  name Dot14
+  label chromiance
+  xpos -574
+  ypos 226
+ }
+push $N79183c00
+ Colorspace {
+  colorspace_in sRGB
+  colorspace_out HSV
+  name Colorspace1
+  label "\[value colorspace_in] > \[value colorspace_out]"
+  xpos -355
+  ypos 161
+ }
+ Dot {
+  name Dot10
+  label "hsv test"
+  xpos -321
+  ypos 235
+ }
+push $N791bc400
+ Saturation {
+  saturation 2
+  name Saturation1
+  xpos -155
+  ypos 157
+ }
+ Dot {
+  name Dot8
+  label "saturation boost"
+  xpos -121
+  ypos 240
+ }
+push $N791bc800
+ Dot {
+  name Dot2
+  xpos 180
+  ypos 98
+ }
+set N79133000 [stack 0]
+ Dot {
+  name Dot3
+  xpos 70
+  ypos 98
+ }
+ Blur {
+  channels rgb
+  size 1
+  name Blur2
+  label "\[value size]"
+  xpos 36
+  ypos 158
+ }
+push $N79133000
+ Merge2 {
+  inputs 2
+  operation from
+  bbox B
+  output rgb
+  name Merge1
+  xpos 146
+  ypos 164
+ }
+ Grade {
+  white 700
+  black_clamp false
+  name Grade4
+  xpos 146
+  ypos 188
+ }
+ Dot {
+  name Dot4
+  label "grain check"
+  xpos 180
+  ypos 247
+ }
+ Switch {
+  inputs 5
+  which {{colorQCTool}}
+  name Switch1
+  label "which = \[value which],input name = \[value input\[value which].name]"
+  xpos 146
+  ypos 365
+  addUserKnob {20 User}
+  addUserKnob {68 colorQCTool l "Color QC Tool" M {"grain check" "saturation boost" hsv chromiance "color against luminance" "" "" "" ""}}
+  addUserKnob {41 which_1 l which +INVISIBLE T Switch1.which}
+ }
+ Output {
+  name Output1
+  xpos 146
+  ypos 465
+ }
+end_group
