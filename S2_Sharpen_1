@@ -1,0 +1,108 @@
+set cut_paste_input [stack 0]
+version 13.0 v4
+push $cut_paste_input
+Group {
+ name S2_Sharpen_1
+ help "S2_Sharpen v01\nby San2\n\nabout:-\nthis node is created to sharpen or increase the details. Also you can reduce the foggyness.\n \nuse:-\nEnhanced : increase or decrease the detail. \nFrequency : detect the frequncy need to enhance.\n\nthanks and regards\nSan2\n\nany furthur issue feel free to contact me - \nsantu.santu.biswas@gmail.com"
+ tile_color 0x7f00ffff
+ label "Frequency : \[value sharpenFrequency] , Enhanced : \[value sharpenEnhanced]"
+ note_font_color 0x6aff55ff
+ selected true
+ xpos -366
+ ypos 636
+ lock_connections true
+ addUserKnob {20 Sharpen}
+ addUserKnob {26 creator l "" +STARTLINE T "<br>\nS2_Sharpen v01\n\nby <font color='red'>San2</font>"}
+ addUserKnob {26 ""}
+ addUserKnob {7 sharpenFrequency l Frequency R 0 10}
+ sharpenFrequency 4
+ addUserKnob {7 sharpenEnhanced l Enhanced R 1 10}
+ sharpenEnhanced 1
+ addUserKnob {7 sharpenMix l Mix}
+ sharpenMix 1
+ addUserKnob {26 sharpenNote l "" +STARTLINE T "\n\n* Also you can reduce the foggyness by using a bigger value in Frequency"}
+}
+ Input {
+  inputs 0
+  name InputSource
+  xpos -54
+  ypos 47
+ }
+ Dot {
+  name Dot2
+  xpos -20
+  ypos 150
+ }
+set N79130c00 [stack 0]
+ Dot {
+  name Dot5
+  xpos -192
+  ypos 150
+ }
+ Dot {
+  name Dot1
+  xpos -192
+  ypos 190
+ }
+set N79130400 [stack 0]
+ Dot {
+  name Dot3
+  xpos -302
+  ypos 190
+ }
+ Dot {
+  name Dot4
+  xpos -302
+  ypos 272
+ }
+push $N79130400
+ Blur {
+  channels rgb
+  size {{parent.sharpenFrequency}}
+  name Blur1
+  label "\[value size]"
+  xpos -226
+  ypos 233
+ }
+ Merge2 {
+  inputs 2
+  operation divide
+  output rgb
+  name Merge1
+  xpos -226
+  ypos 269
+ }
+ Grade {
+  gamma {{1/parent.sharpenEnhanced}}
+  black_clamp false
+  name Grade1
+  xpos -226
+  ypos 293
+ }
+ Dot {
+  name Dot6
+  xpos -192
+  ypos 340
+ }
+push $N79130c00
+ Merge2 {
+  inputs 2
+  operation multiply
+  bbox B
+  output rgb
+  mix {{parent.sharpenMix}}
+  name Merge2
+  xpos -54
+  ypos 337
+ }
+ Dot {
+  name Dot7
+  xpos -20
+  ypos 389
+ }
+ Output {
+  name Output1
+  xpos -54
+  ypos 472
+ }
+end_group
