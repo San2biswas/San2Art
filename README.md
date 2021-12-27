@@ -1,4 +1,4 @@
-## Welcome San2 Art
+## Welcome <font color=crimson>San2 Art</font>
 
 My website [San2Art](https://www.san2.co.in/)
 You can use the [editor on GitHub](https://github.com/San2biswas/San2Art/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
