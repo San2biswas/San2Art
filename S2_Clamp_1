@@ -1,0 +1,127 @@
+set cut_paste_input [stack 0]
+version 13.0 v4
+push $cut_paste_input
+Group {
+ name S2_Clamp_1
+ help "S2_Clamp v01\nby San2\n\nabout:-\nthis node is created to clamp pixel values indivutually.\n \nuse:-\nblack clamp on : turn on or off\nblack clamp from : change value less than it\nblack clamp limit : change those values to this value\nchannels : check on or off indivudual channels\n\nsame for white clamp (greater than)\n\nthanks and regards\nSan2\n\nany furthur issue feel free to contact me - \nsantu.santu.biswas@gmail.com"
+ tile_color 0x7f00ffff
+ label "Black Clamp : \[value blackClampOn] , White Clamp : \[value whiteClampOn]"
+ note_font_color 0x6aff55ff
+ selected true
+ xpos -370
+ ypos 129
+ addUserKnob {20 Clamp}
+ addUserKnob {26 creator l "" +STARTLINE T "<br>\nS2_Clamp v01\n\nby <font color='red'>San2</font>"}
+ addUserKnob {26 ""}
+ addUserKnob {6 blackClampOn l "Black Clamp On/Off" +STARTLINE}
+ addUserKnob {26 blackChannels l "Black Clamp Channels" T "\n"}
+ addUserKnob {41 blackRed l Red -STARTLINE T BlackClamp.blackRed}
+ addUserKnob {41 blackGreen l Green -STARTLINE T BlackClamp.blackGreen}
+ addUserKnob {41 blackBlue l Blue -STARTLINE T BlackClamp.blackBlue}
+ addUserKnob {41 blackAlpha l Alpha -STARTLINE T BlackClamp.blackAlpha}
+ addUserKnob {41 blackClampFrom T BlackClamp.blackClampFrom}
+ addUserKnob {41 blackClampLimit T BlackClamp.blackClampLimit}
+ addUserKnob {26 ""}
+ addUserKnob {6 whiteClampOn l "White Clamp On/Off" +STARTLINE}
+ addUserKnob {26 whiteChannels l "Black Clamp Channels" T "\n"}
+ addUserKnob {41 whiteRed l Red -STARTLINE T WhiteClamp.whiteRed}
+ addUserKnob {41 whiteGreen l Green -STARTLINE T WhiteClamp.whiteGreen}
+ addUserKnob {41 whiteBlue l Blue -STARTLINE T WhiteClamp.whiteBlue}
+ addUserKnob {41 whiteAlpha l Alpha -STARTLINE T WhiteClamp.whiteAlpha}
+ addUserKnob {41 whiteClampFrom T WhiteClamp.whiteClampFrom}
+ addUserKnob {41 whiteClampLimit T WhiteClamp.whiteClampLimit}
+}
+ Input {
+  inputs 0
+  name InputSource
+  xpos -40
+  ypos 87
+ }
+ Expression {
+  expr0 "(r<blackClampFrom.r ? blackClampLimit.r : r)+r*!blackRed"
+  expr1 "(g<blackClampFrom.g ? blackClampLimit.g : g)+g*!blackGreen"
+  expr2 "(b<blackClampFrom.b ? blackClampLimit.b : b)+b*!blackBlue"
+  expr3 "(a<blackClampFrom.a ? blackClampLimit.a : a)+a*!blackAlpha"
+  name BlackClamp
+  selected true
+  xpos -40
+  ypos 159
+  disable {{!parent.blackClampOn}}
+  addUserKnob {20 blackClamp l "Black Clamp"}
+  addUserKnob {26 blackChannels l "Black Clamp Channels" T "\n"}
+  addUserKnob {6 blackRed l Red -STARTLINE}
+  blackRed true
+  addUserKnob {6 blackGreen l Green -STARTLINE}
+  blackGreen true
+  addUserKnob {6 blackBlue l Blue -STARTLINE}
+  blackBlue true
+  addUserKnob {6 blackAlpha l Alpha -STARTLINE}
+  blackAlpha true
+  addUserKnob {19 blackClampFrom}
+  blackClampFrom {0 0 0 0}
+  addUserKnob {6 blackClampFrom_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {6 color_rgba_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {19 blackClampLimit}
+  blackClampLimit {0 0 0 0}
+  addUserKnob {6 blackClampLimit_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {6 color_rgba_1_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {26 ""}
+  addUserKnob {41 channel0_1 l channels T BlackClamp.channel0}
+  addUserKnob {41 expr0_1 l = T BlackClamp.expr0}
+  addUserKnob {41 channel1_1 l channels T BlackClamp.channel1}
+  addUserKnob {41 expr1_1 l = T BlackClamp.expr1}
+  addUserKnob {41 channel2_1 l channels T BlackClamp.channel2}
+  addUserKnob {41 expr2_1 l = T BlackClamp.expr2}
+  addUserKnob {41 channel3_1 l channels T BlackClamp.channel3}
+  addUserKnob {41 expr3_1 l = T BlackClamp.expr3}
+ }
+ Expression {
+  expr0 "(r>whiteClampFrom.r ? whiteClampLimit.r : r)+r*!whiteRed"
+  expr1 "(g>whiteClampFrom.g ? whiteClampLimit.g : g)+g*!whiteGreen"
+  expr2 "(b>whiteClampFrom.b ? whiteClampLimit.b : b)+b*!whiteBlue"
+  expr3 "(a>whiteClampFrom.a ? whiteClampLimit.a : a)+a*!whiteAlpha"
+  name WhiteClamp
+  xpos -40
+  ypos 183
+  disable {{!parent.whiteClampOn}}
+  addUserKnob {20 blackClamp l "Black Clamp"}
+  addUserKnob {26 whiteChannels l "Black Clamp Channels" T "\n"}
+  addUserKnob {6 whiteRed l Red -STARTLINE}
+  whiteRed true
+  addUserKnob {6 whiteGreen l Green -STARTLINE}
+  whiteGreen true
+  addUserKnob {6 whiteBlue l Blue -STARTLINE}
+  whiteBlue true
+  addUserKnob {6 whiteAlpha l Alpha -STARTLINE}
+  whiteAlpha true
+  addUserKnob {19 whiteClampFrom}
+  whiteClampFrom 1
+  addUserKnob {6 whiteClampFrom_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {6 blackClampFrom_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {6 color_rgba_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {19 whiteClampLimit}
+  whiteClampLimit 1
+  addUserKnob {6 whiteClampLimit_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {6 blackClampLimit_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {6 color_rgba_1_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {26 ""}
+  addUserKnob {41 channel0_1 l channels T WhiteClamp.channel0}
+  addUserKnob {41 expr0_1 l = T WhiteClamp.expr0}
+  addUserKnob {41 channel1_1 l channels T WhiteClamp.channel1}
+  addUserKnob {41 expr1_1 l = T WhiteClamp.expr1}
+  addUserKnob {41 channel2_1 l channels T WhiteClamp.channel2}
+  addUserKnob {41 expr2_1 l = T WhiteClamp.expr2}
+  addUserKnob {41 channel3_1 l channels T WhiteClamp.channel3}
+  addUserKnob {41 expr3_1 l = T WhiteClamp.expr3}
+ }
+ Dot {
+  name Dot1
+  xpos -6
+  ypos 234
+ }
+ Output {
+  name Output1
+  xpos -40
+  ypos 279
+ }
+end_group
