@@ -10,8 +10,8 @@ This website [https://san2biswas.github.io/San2Art/](https://san2biswas.github.i
 
 
 
-[S2_AutoCrop_1](https://github.com/San2biswas/San2Art/blob/main/S2_AutoCrop_1)
-[S2_BlackWhite_1](https://github.com/San2biswas/San2Art/blob/main/S2_BlackWhite_1)
+[S2_AutoCrop_1](https://github.com/San2biswas/San2Art/blob/main/S2_AutoCrop_1)<br>
+[S2_BlackWhite_1](https://github.com/San2biswas/San2Art/blob/main/S2_BlackWhite_1)<br>
 
 
 
