@@ -5,7 +5,7 @@ You can use the [editor on GitHub](https://github.com/San2biswas/San2Art/edit/ma
 This website [https://san2biswas.github.io/San2Art/](https://san2biswas.github.io/San2Art/)
 
 
-## **_<font color=#00BFFF>Nuke</font>_**
+## <font color=00BFFF>Nuke</font>
 
 ## **_<font color=crimson>S2 Toolset</font>_**
 
