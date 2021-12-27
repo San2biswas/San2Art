@@ -1,0 +1,45 @@
+set cut_paste_input [stack 0]
+version 13.0 v4
+push $cut_paste_input
+Group {
+ name S2_LWremoval_1
+ help "S2_LWremoval_v01\nby San2\n\nabout:-\nthis node is created to remove white or dark spots while retain light detail. use stacks to get better result.\n \nuse:-\nArea : decrease kill the bright and increase kill the dark dots\n\nthanks and regards\nSan2\n\nany furthur issue feel free to contact me - \nsantu.santu.biswas@gmail.com"
+ tile_color 0x7f00ffff
+ label "area : \[value size]"
+ note_font_color 0x55ff7fff
+ selected true
+ xpos -353
+ ypos 343
+ addUserKnob {20 User l "LW Removal"}
+ addUserKnob {26 creator l "" +STARTLINE T "<br>\nS2_LWremoval v01\n\nby <font color='red'>San2</font>"}
+ addUserKnob {26 ""}
+ addUserKnob {41 channels T Dilate1.channels}
+ addUserKnob {41 size l Area T Dilate1.size}
+}
+ Input {
+  inputs 0
+  name InputSource
+  selected true
+  xpos -239
+  ypos 36
+ }
+ Dilate {
+  channels rgba
+  size -1
+  name Dilate1
+  xpos -239
+  ypos 76
+ }
+ Dilate {
+  channels {{{parent.Dilate1.channels}}}
+  size {{-parent.Dilate1.size}}
+  name Dilate2
+  xpos -239
+  ypos 120
+ }
+ Output {
+  name Output1
+  xpos -239
+  ypos 178
+ }
+end_group
