@@ -1,0 +1,231 @@
+set cut_paste_input [stack 0]
+version 13.0 v4
+push $cut_paste_input
+Group {
+ name S2_EdgeFusion_1
+ tile_color 0x7f00ffff
+ label "Full Alpha : \[value fullAlpha]"
+ note_font_color 0x6aff55ff
+ selected true
+ xpos -362
+ ypos 207
+ addUserKnob {20 User}
+ addUserKnob {26 creator l "" +STARTLINE T "<br>\nS2_EdgeFusion v01\n\nby <font color='red'>San2</font>"}
+ addUserKnob {26 ""}
+ addUserKnob {6 fullAlpha l "Full Alpha" +STARTLINE}
+ fullAlpha true
+ addUserKnob {14 edgeFusionBlur1 l Blur1 R 0 100}
+ edgeFusionBlur1 2
+ addUserKnob {7 edgeFusionMix1 l Mix1}
+ edgeFusionMix1 0.275
+ addUserKnob {14 edgeFusionBlur2 l Blur2 R 0 100}
+ edgeFusionBlur2 4
+ addUserKnob {14 edgeFusionBgBlur2 l "Bg Blur2" R 0 100}
+ edgeFusionBgBlur2 1
+ addUserKnob {7 edgeFusionMix2 l Mix2}
+ edgeFusionMix2 0.4
+ addUserKnob {14 edgeFusionBlur3 l Blur3 R 0 100}
+ edgeFusionBlur3 6
+ addUserKnob {14 edgeFusionBgBlur3 l "Bg Blur3" R 0 100}
+ edgeFusionBgBlur3 2
+ addUserKnob {7 edgeFusionMix3 l Mix3}
+ edgeFusionMix3 0.5
+}
+ Input {
+  inputs 0
+  name Inputrgba
+  xpos -428
+  ypos 44
+ }
+ Dot {
+  name Dot2
+  label rgba
+  xpos -394
+  ypos 85
+ }
+ Dot {
+  name Dot3
+  xpos -394
+  ypos 157
+ }
+set N4cd45000 [stack 0]
+ Dot {
+  name Dot6
+  xpos -571
+  ypos 157
+ }
+set N4cd44c00 [stack 0]
+ Dot {
+  name Dot14
+  xpos -746
+  ypos 157
+ }
+set N4cd44800 [stack 0]
+ Dot {
+  name Dot15
+  xpos -891
+  ypos 157
+ }
+ Blur {
+  channels alpha
+  size {{parent.edgeFusionBlur3}}
+  name Blur5
+  label "\[value size]"
+  xpos -925
+  ypos 562
+ }
+ Input {
+  inputs 0
+  name Inputbg
+  xpos -1178
+  ypos 56
+  number 1
+ }
+ Dot {
+  name Dot16
+  label bg
+  xpos -1144
+  ypos 96
+ }
+ Shuffle2 {
+  fromInput1 {{0} B}
+  fromInput2 {{0} B}
+  mappings "4 rgba.red 0 0 rgba.red 0 0 rgba.green 0 1 rgba.green 0 1 rgba.blue 0 2 rgba.blue 0 2 white -1 -1 rgba.alpha 0 3"
+  name Shuffle1
+  xpos -1178
+  ypos 158
+  disable {{!parent.fullAlpha}}
+ }
+ Dot {
+  name Dot12
+  label bg
+  xpos -1144
+  ypos 220
+ }
+set N4cceec00 [stack 0]
+ Dot {
+  name Dot11
+  xpos -1144
+  ypos 364
+ }
+set N4ccee800 [stack 0]
+ Dot {
+  name Dot13
+  xpos -1144
+  ypos 493
+ }
+set N4ccee400 [stack 0]
+ Dot {
+  name Dot4
+  xpos -1144
+  ypos 628
+ }
+ Blur {
+  channels rgb
+  size {{parent.edgeFusionBgBlur3}}
+  name Blur7
+  label "\[value size]"
+  selected true
+  xpos -1076
+  ypos 619
+ }
+ Merge2 {
+  inputs 2
+  operation stencil
+  bbox B
+  name Merge9
+  xpos -925
+  ypos 625
+ }
+push $N4cd44800
+ Blur {
+  channels alpha
+  size {{parent.edgeFusionBlur2}}
+  name Blur4
+  label "\[value size]"
+  xpos -780
+  ypos 431
+ }
+push $N4ccee400
+ Blur {
+  channels rgb
+  size {{parent.edgeFusionBgBlur2}}
+  name Blur6
+  label "\[value size]"
+  xpos -1073
+  ypos 484
+ }
+ Merge2 {
+  inputs 2
+  operation stencil
+  bbox B
+  name Merge7
+  xpos -780
+  ypos 490
+ }
+push $N4cd44c00
+ Blur {
+  channels alpha
+  size {{parent.edgeFusionBlur1}}
+  name Blur2
+  label "\[value size]"
+  xpos -605
+  ypos 288
+ }
+push $N4ccee800
+ Merge2 {
+  inputs 2
+  operation stencil
+  bbox B
+  name Merge2
+  xpos -605
+  ypos 361
+ }
+push $N4cceec00
+push $N4cd45000
+ Merge2 {
+  inputs 2
+  operation under
+  bbox B
+  name Merge1
+  xpos -428
+  ypos 215
+ }
+ Merge2 {
+  inputs 2
+  bbox B
+  mix {{parent.edgeFusionMix1}}
+  name Merge3
+  label "\[value mix]"
+  xpos -428
+  ypos 355
+ }
+ Merge2 {
+  inputs 2
+  bbox B
+  mix {{parent.edgeFusionMix2}}
+  name Merge8
+  label "\[value mix]"
+  xpos -428
+  ypos 484
+ }
+ Merge2 {
+  inputs 2
+  bbox B
+  mix {{parent.edgeFusionMix3}}
+  name Merge10
+  label "\[value mix]"
+  xpos -428
+  ypos 619
+ }
+ Dot {
+  name Dot17
+  xpos -394
+  ypos 685
+ }
+ Output {
+  name Output1
+  xpos -428
+  ypos 785
+ }
+end_group
