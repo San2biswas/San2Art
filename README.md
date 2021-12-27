@@ -6,7 +6,7 @@ This website [https://san2biswas.github.io/San2Art/](https://san2biswas.github.i
 
 
 
-## **<font color=crimson>_S2 Toolset_</font>**
+## **_<font color=crimson>S2 Toolset</font>_**
 
 
 
