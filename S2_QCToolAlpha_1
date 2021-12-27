@@ -1,0 +1,357 @@
+set cut_paste_input [stack 0]
+version 13.0 v4
+push $cut_paste_input
+Group {
+ name S2_QCToolAlpha_1
+ help "S2_QCToolAlpha v01\nby San2\n\nabout:-\nthis node is created to check the qc level of alpha\nuse:-\nAlpha QC Tool : change the type of qc\n\nthanks and regards\nSan2\n\nany furthur issue feel free to contact me - \nsantu.santu.biswas@gmail.com"
+ tile_color 0x7f00ffff
+ label "Alpha QC Tool : \[value alphaQCTool]"
+ note_font_color 0x6aff55ff
+ selected true
+ xpos -360
+ ypos 481
+ addUserKnob {20 alphaQCTab l "Alpha QC"}
+ addUserKnob {26 creator l "" +STARTLINE T "<br>\nS2_AlphaCheck v01\n\nby <font color='red'>San2</font>"}
+ addUserKnob {26 ""}
+ addUserKnob {41 alphaQCTool l "Alpha QC Tool" T Switch1.alphaQCTool}
+ addUserKnob {26 ""}
+ addUserKnob {20 alphaCheckOption l "Alpha Check Option" n 1}
+ alphaCheckOption 0
+ addUserKnob {41 matteColor l "Matte Color" T S2_MatteCheck.matteColor}
+ addUserKnob {41 matteColorMix l "Matte Color Mix" T S2_MatteCheck.matteColorMix}
+ addUserKnob {41 matteBgOn l "Matte Bg On/Off" T S2_MatteCheck.matteBgOn}
+ addUserKnob {41 matteBgColor l "Matte Bg Color" T S2_MatteCheck.matteBgColor}
+ addUserKnob {41 checkerboardSize l "Checkerboard Size" T S2_MatteCheck.checkerboardSize}
+ addUserKnob {41 checkerboardMix l "Checkerboard Mix" T S2_MatteCheck.checkerboardMix}
+ addUserKnob {20 endGroup n -1}
+}
+ BackdropNode {
+  inputs 0
+  name BackdropNode2
+  tile_color 0x7171c600
+  label matte
+  note_font_size 42
+  xpos -959
+  ypos -74
+  bdwidth 1143
+  bdheight 418
+ }
+ Input {
+  inputs 0
+  name InputFootage
+  xpos -848
+  ypos -39
+ }
+ Dot {
+  name Dot28
+  label footage
+  xpos -814
+  ypos 2
+ }
+ Dot {
+  name Dot11
+  xpos -814
+  ypos 259
+ }
+ Input {
+  inputs 0
+  name InputAlpha
+  selected true
+  xpos -12
+  ypos -35
+  number 1
+ }
+ Dot {
+  name Dot20
+  label alpha
+  xpos 22
+  ypos 5
+ }
+ Dot {
+  name Dot21
+  xpos 22
+  ypos 96
+ }
+set N7925f400 [stack 0]
+ Clamp {
+  channels alpha
+  name Clamp3
+  xpos -126
+  ypos 87
+ }
+ Dot {
+  name Dot23
+  xpos -210
+  ypos 96
+ }
+set N7925ec00 [stack 0]
+ Dot {
+  name Dot25
+  xpos -415
+  ypos 96
+ }
+set N7925e800 [stack 0]
+ Dot {
+  name Dot27
+  xpos -656
+  ypos 96
+ }
+ Group {
+  inputs 2
+  name S2_MatteCheck
+  tile_color 0x7f00ffff
+  note_font_color 0x6aff55ff
+  xpos -690
+  ypos 256
+  addUserKnob {20 User}
+  addUserKnob {26 creator l "" +STARTLINE T "<br>\nS2_MatteCheck v01\n\nby <font color='red'>San2</font>"}
+  addUserKnob {26 ""}
+  addUserKnob {18 matteColor l "Matte Color"}
+  matteColor {1 0 0}
+  addUserKnob {6 matteColor_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {6 color_rgb_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {7 matteColorMix l "Matte Color Mix"}
+  matteColorMix 0.5
+  addUserKnob {6 matteBgOn l "Matte Bg On/Off" +STARTLINE}
+  matteBgOn true
+  addUserKnob {18 matteBgColor l "Matte Bg Color"}
+  matteBgColor 0.2
+  addUserKnob {6 matteBgColor_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {6 color_rgb_1_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {14 checkerboardSize l "Checkerboard Size" R 0 100}
+  checkerboardSize 64
+  addUserKnob {7 checkerboardMix l "Checkerboard Mix"}
+  checkerboardMix 0.12
+ }
+  CheckerBoard2 {
+   inputs 0
+   boxsize {{parent.checkerboardSize}}
+   name CheckerBoard1
+   xpos -510
+   ypos -52
+  }
+  Constant {
+   inputs 0
+   color {{parent.matteBgColor} {parent.matteBgColor} {parent.matteBgColor} 1}
+   name Constant2
+   xpos -639
+   ypos 37
+  }
+  Merge2 {
+   inputs 2
+   output rgb
+   mix {{parent.checkerboardMix}}
+   name Merge7
+   xpos -510
+   ypos 61
+  }
+  Dot {
+   name Dot1
+   xpos -476
+   ypos 216
+  }
+  Input {
+   inputs 0
+   name InputAlpha
+   xpos 93
+   ypos -420
+  }
+  Dot {
+   name Dot27
+   xpos 127
+   ypos -380
+  }
+  Shuffle2 {
+   fromInput1 {{0} B}
+   fromInput2 {{0} B}
+   name Shuffle1
+   xpos 93
+   ypos -286
+  }
+  Input {
+   inputs 0
+   name InputFootage
+   xpos -66
+   ypos -410
+   number 1
+  }
+  Dot {
+   name Dot29
+   xpos -32
+   ypos -356
+  }
+  Shuffle2 {
+   fromInput1 {{0} B}
+   fromInput2 {{0} B}
+   name Shuffle2
+   xpos -66
+   ypos -284
+  }
+  Dot {
+   name Dot28
+   xpos -32
+   ypos -208
+  }
+  Copy {
+   inputs 2
+   from0 rgba.alpha
+   to0 rgba.alpha
+   name Copy1
+   xpos 93
+   ypos -217
+  }
+  Dot {
+   name Dot33
+   xpos 127
+   ypos -86
+  }
+set N7920ec00 [stack 0]
+  Dot {
+   name Dot35
+   xpos -11
+   ypos -86
+  }
+set N7920e800 [stack 0]
+  Merge2 {
+   inputs 2
+   operation copy
+   name Merge6
+   xpos -45
+   ypos 213
+  }
+push $N7920ec00
+  Dot {
+   name Dot32
+   xpos 230
+   ypos -86
+  }
+  Dot {
+   name Dot31
+   xpos 230
+   ypos 10
+  }
+  Constant {
+   inputs 0
+   channels rgb
+   color {{parent.matteColor} {parent.matteColor} {parent.matteColor} {parent.matteColor}}
+   name Constant1
+   xpos -281
+   ypos -17
+  }
+push $N7920e800
+  Dot {
+   name Dot34
+   xpos -110
+   ypos -86
+  }
+  Merge2 {
+   inputs 2
+   operation copy
+   name Merge5
+   xpos -144
+   ypos 7
+  }
+push $N7920ec00
+  Keymix {
+   inputs 3
+   channels rgb
+   mix {{parent.matteColorMix}}
+   bbox B
+   name Keymix1
+   xpos 93
+   ypos 7
+  }
+  Premult {
+   name Premult1
+   xpos 93
+   ypos 31
+   disable {{!parent.matteBgOn}}
+  }
+  Merge2 {
+   inputs 2
+   operation under
+   bbox B
+   name Merge4
+   xpos 93
+   ypos 213
+  }
+  Dot {
+   name Dot36
+   label "matte check"
+   xpos 127
+   ypos 262
+  }
+  Output {
+   name Output1
+   xpos 93
+   ypos 366
+  }
+ end_group
+push $N7925e800
+ Expression {
+  expr0 "a==0 ? 1 : 0"
+  expr1 "a==1 ? 1 : 0"
+  expr2 "a* (1-a)>0 ? 1 : 0"
+  name Expression2
+  xpos -449
+  ypos 203
+ }
+ Dot {
+  name Dot26
+  label "hard matte and soft matte"
+  xpos -415
+  ypos 274
+ }
+push $N7925ec00
+ EdgeBlur {
+  output rgba.alpha
+  name EdgeBlur1
+  xpos -244
+  ypos 192
+ }
+ Shuffle2 {
+  fromInput1 {{0} B}
+  fromInput2 {{0} B}
+  mappings "4 rgba.alpha 0 3 rgba.alpha 0 3 rgba.alpha 0 3 rgba.red 0 0 rgba.alpha 0 3 rgba.green 0 1 rgba.alpha 0 3 rgba.blue 0 2"
+  name Shuffle1
+  xpos -244
+  ypos 228
+ }
+ Dot {
+  name Dot24
+  label "edge and semi-transparent check"
+  xpos -210
+  ypos 269
+ }
+push $N7925f400
+ Expression {
+  expr0 "a>1 ? 1 : 0"
+  expr1 "a<0 ? 1 : 0"
+  expr2 0
+  name Expression1
+  xpos -12
+  ypos 198
+ }
+ Dot {
+  name Dot22
+  label "clamp test"
+  xpos 22
+  ypos 273
+ }
+ Switch {
+  inputs 4
+  which {{alphaQCTool}}
+  name Switch1
+  label "which = \[value which],input name = \[value input\[value which].name]"
+  xpos -12
+  ypos 407
+  addUserKnob {20 User}
+  addUserKnob {4 alphaQCTool l "Alpha QC Tool" M {clamp semi-transparent "hard and soft matte" "matte check" "" ""}}
+  addUserKnob {41 which_1 l which +INVISIBLE T Switch1.which}
+ }
+ Output {
+  name Output1
+  xpos -12
+  ypos 507
+ }
+end_group
