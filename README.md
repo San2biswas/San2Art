@@ -6,7 +6,7 @@ This website [https://san2biswas.github.io/San2Art/](https://san2biswas.github.i
 
 
 
-## **_S2 Toolset_**
+## **<font color=crimson>_S2 Toolset_</font>**
 
 
 
@@ -23,7 +23,7 @@ This website [https://san2biswas.github.io/San2Art/](https://san2biswas.github.i
 
 
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+A set of tools are created by regular nuke nodes by grouping and mixxing.
 
 ### Markdown
 
