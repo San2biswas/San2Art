@@ -1,0 +1,88 @@
+set cut_paste_input [stack 0]
+version 13.0 v4
+push $cut_paste_input
+Group {
+ name S2_LightBlink_1
+ help "S2_LightBlink v01\nby San2\n\nabout:-\nthis node is created to capture the light flactuation.\n \nuse:-\nlight vs color : use to capture light variation or light and color variation\n\nHold Frame : reference frame\n\nthanks and regards\nSan2\n\nany furthur issue feel free to contact me - \nsantu.santu.biswas@gmail.com"
+ tile_color 0x7f00ffff
+ label "Hold Frame: \[value holdFrame]"
+ note_font_color 0x6aff55ff
+ selected true
+ xpos -358
+ ypos 286
+ addUserKnob {20 User}
+ addUserKnob {26 lightBlink l "" +STARTLINE T "<br>\nS2_LightBlink v01\n\nby <font color='red'>San2</font>"}
+ addUserKnob {26 ""}
+ addUserKnob {7 lightBlinkSaturation l "light vs color"}
+ addUserKnob {41 go l Go! T CurveTool1.go}
+ addUserKnob {41 ROI T CurveTool1.ROI}
+ addUserKnob {41 resetROI l Reset -STARTLINE T CurveTool1.resetROI}
+ addUserKnob {26 ""}
+ addUserKnob {3 holdFrame l "Hold Frame"}
+ addUserKnob {18 lightBlinkMultiply l Multiply}
+ lightBlinkMultiply 1
+ addUserKnob {6 lightBlinkMultiply_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 color_rgb_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {7 lightBlinkMix l Mix}
+ lightBlinkMix 1
+}
+ Input {
+  inputs 0
+  name Inputsource
+  xpos -428
+  ypos 52
+ }
+ Dot {
+  name Dot2
+  label source
+  xpos -394
+  ypos 103
+ }
+ Dot {
+  name Dot3
+  xpos -394
+  ypos 147
+ }
+set N79379c00 [stack 0]
+ Grade {
+  whitepoint {{parent.CurveTool1.intensitydata(parent.holdFrame)} {parent.CurveTool1.intensitydata(parent.holdFrame)} {parent.CurveTool1.intensitydata(parent.holdFrame)} {parent.CurveTool1.intensitydata(parent.holdFrame)}}
+  white {{parent.CurveTool1.intensitydata} {parent.CurveTool1.intensitydata} {parent.CurveTool1.intensitydata} {parent.CurveTool1.intensitydata}}
+  multiply {{parent.lightBlinkMultiply}}
+  black_clamp false
+  mix {{parent.lightBlinkMix}}
+  name Grade5
+  xpos -428
+  ypos 218
+ }
+ Dot {
+  name Dot6
+  xpos -394
+  ypos 253
+ }
+ Output {
+  name Output1
+  xpos -428
+  ypos 340
+ }
+push $N79379c00
+ Dot {
+  name Dot4
+  xpos -241
+  ypos 147
+ }
+ Saturation {
+  saturation {{parent.lightBlinkSaturation}}
+  name Saturation1
+  selected true
+  xpos -275
+  ypos 172
+ }
+ CurveTool {
+  ROI {0 0 1600 900}
+  autocropdata {457 389 1371 1167}
+  intensitydata {1 1 1 0}
+  name CurveTool1
+  xpos -275
+  ypos 196
+ }
+end_group
