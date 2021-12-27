@@ -1,0 +1,75 @@
+set cut_paste_input [stack 0]
+version 13.0 v4
+push $cut_paste_input
+Group {
+ name S2_BlackWhite_1
+ help "S2_Sharpen v01\nby San2\n\nabout:-\nthis node is created to convert the input to monochrome\n \nuse:-\nBlack & White : color ratio to black and white\nTint : add tint on black and white\n\nthanks and regards\nSan2\n\nany furthur issue feel free to contact me - \nsantu.santu.biswas@gmail.com"
+ tile_color 0x7f00ffff
+ label "r: \[value blackWhite.r], g: \[value blackWhite.g], b: \[value blackWhite.b]"
+ note_font_color 0x6aff55ff
+ selected true
+ xpos -370
+ ypos 57
+ addUserKnob {20 bwTab l "Black and White"}
+ addUserKnob {26 creator l "" +STARTLINE T "<br>\nS2_BlackWhite v01\n\nby <font color='red'>San2</font>"}
+ addUserKnob {26 ""}
+ addUserKnob {18 blackWhite l "Black & White"}
+ blackWhite {0.2 0.72 0.072}
+ addUserKnob {6 blackWhite_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 color_rgb_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {18 blackWhiteTint l Tint}
+ blackWhiteTint {1 1 1}
+ addUserKnob {6 blackWhiteTint_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 color_rgb_1_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {7 bwMix l Mix}
+ bwMix 1
+ addUserKnob {26 ""}
+ addUserKnob {26 "" l mask T ""}
+ addUserKnob {41 maskChannelInput l "" -STARTLINE T bwColor.maskChannelInput}
+ addUserKnob {41 inject -STARTLINE T bwColor.inject}
+ addUserKnob {41 invert_mask l invert -STARTLINE T bwColor.invert_mask}
+ addUserKnob {41 fringe -STARTLINE T bwColor.fringe}
+}
+ Input {
+  inputs 0
+  name InputMask
+  xpos 7
+  ypos 133
+  number 1
+ }
+ Dot {
+  name Dot1
+  xpos 41
+  ypos 174
+ }
+ Input {
+  inputs 0
+  name InputSource
+  xpos -124
+  ypos 107
+ }
+ Expression {
+  inputs 1+1
+  expr0 (r*bwColor.r+g*bwColor.g+b*bwColor.b)*bwTint.r
+  expr1 (r*bwColor.r+g*bwColor.g+b*bwColor.b)*bwTint.g
+  expr2 (r*bwColor.r+g*bwColor.g+b*bwColor.b)*bwTint.b
+  mix {{parent.bwMix}}
+  name bwColor
+  selected true
+  xpos -124
+  ypos 171
+  addUserKnob {20 User}
+  addUserKnob {6 color_rgb_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {18 bwColor l "Black & White"}
+  bwColor {{parent.blackWhite} {parent.blackWhite} {parent.blackWhite}}
+  addUserKnob {6 bwColor_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {18 bwTint l "Black & White Tint"}
+  bwTint {{parent.blackWhiteTint} {parent.blackWhiteTint} {parent.blackWhiteTint}}
+  addUserKnob {6 bwTint_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+ }
+ Output {
+  name Output1
+  xpos -124
+  ypos 247
+ }
+end_group
