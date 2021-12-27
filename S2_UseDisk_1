@@ -1,0 +1,49 @@
+set cut_paste_input [stack 0]
+version 13.0 v4
+push $cut_paste_input
+Group {
+ name S2_UseDisk_1
+ help "S2_UseDisk v01\nby San2\n\nabout:-\nthis node is created to switch between disk and stream\n \nuse:-\nUse Disk : toggle to use disk\n\nthanks and regards\nSan2\n\nany furthur issue feel free to contact me - \nsantu.santu.biswas@gmail.com"
+ tile_color 0x7f00ffff
+ label "use disk : \[value s2UseDisk]"
+ note_font_color 0x6aff55ff
+ selected true
+ xpos -366
+ ypos 711
+ addUserKnob {20 User}
+ addUserKnob {26 creator l "" +STARTLINE T "<br>\nS2_UseDisk v01\n\nby <font color='red'>San2</font>"}
+ addUserKnob {26 ""}
+ addUserKnob {6 s2UseDisk l "Use Disk" +STARTLINE}
+ s2UseDisk true
+}
+ Input {
+  inputs 0
+  name Inputdisk
+  xpos -538
+  ypos 135
+  number 1
+ }
+ Input {
+  inputs 0
+  name Inputstream
+  xpos -428
+  ypos 66
+ }
+ Switch {
+  inputs 2
+  which {{useDisk}}
+  name Switch1
+  selected true
+  xpos -428
+  ypos 135
+  addUserKnob {20 User}
+  addUserKnob {6 useDisk l "Use Disk" +STARTLINE}
+  useDisk {{parent.s2UseDisk}}
+  addUserKnob {41 which_1 l which +INVISIBLE T Switch1.which}
+ }
+ Output {
+  name Output1
+  xpos -428
+  ypos 223
+ }
+end_group
