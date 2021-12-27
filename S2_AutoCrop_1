@@ -1,0 +1,83 @@
+set cut_paste_input [stack 0]
+version 13.0 v4
+push $cut_paste_input
+Group {
+ name S2_AutoCrop_1
+ help "S2_AutoCrop v01\nby San2\n\nabout:-\nthis node is created to adjust the bounding box to the content (trim)\n \nuse:-\nGo! : start operation\nROI : limit the area\nAdjust BBox : add or decrease bbox area\n\nthanks and regards\nSan2\n\nany furthur issue feel free to contact me - \nsantu.santu.biswas@gmail.com"
+ tile_color 0x7f00ffff
+ label "adjust bbox : \[value adjustBbox]"
+ note_font_color 0x6aff55ff
+ selected true
+ xpos -370
+ ypos -15
+ addUserKnob {20 autoCropTab l "Auto Crop"}
+ addUserKnob {26 creator l "" +STARTLINE T "<br>\nS2_AutoCrop v01\n\nby <font color='red'>San2</font>"}
+ addUserKnob {26 ""}
+ addUserKnob {41 channels T CurveTool1.channels}
+ addUserKnob {41 ROI T CurveTool1.ROI}
+ addUserKnob {41 resetROI l Reset -STARTLINE T CurveTool1.resetROI}
+ addUserKnob {41 go l Go! T CurveTool1.go}
+ addUserKnob {26 ""}
+ addUserKnob {7 adjustBbox l "Adjust BBox" R 0 10}
+ adjustBbox 2
+ addUserKnob {6 autoCropReformat l Reformat +STARTLINE}
+ addUserKnob {6 autoCropIntersect l Intersect -STARTLINE}
+ addUserKnob {6 autoCropBlackOutside l BlackOutside -STARTLINE}
+ autoCropBlackOutside true
+}
+ Input {
+  inputs 0
+  name InputSource
+  xpos 41
+  ypos 58
+ }
+ Dot {
+  name Dot2
+  xpos 75
+  ypos 127
+ }
+set N4cdedc00 [stack 0]
+ Crop {
+  box {{parent.CurveTool1.autocropdata-autoCropAdjustBbox} {parent.CurveTool1.autocropdata-autoCropAdjustBbox} {parent.CurveTool1.autocropdata+autoCropAdjustBbox} {parent.CurveTool1.autocropdata+autoCropAdjustBbox}}
+  reformat {{parent.autoCropReformat}}
+  intersect {{parent.autoCropIntersect}}
+  crop {{parent.autoCropBlackOutside}}
+  name Crop1
+  selected true
+  xpos 41
+  ypos 203
+  addUserKnob {20 User}
+  addUserKnob {7 autoCropAdjustBbox l "Adjust Bbox" R 0 100}
+  autoCropAdjustBbox {{int(parent.adjustBbox)}}
+  addUserKnob {41 box_1 l box T Crop1.box}
+  addUserKnob {26 "" l "  " T ""}
+  addUserKnob {41 reformat_1 l reformat -STARTLINE T Crop1.reformat}
+  addUserKnob {41 intersect_1 l intersect -STARTLINE T Crop1.intersect}
+  addUserKnob {41 crop_1 l "black outside" -STARTLINE T Crop1.crop}
+ }
+ Dot {
+  name Dot4
+  xpos 75
+  ypos 266
+ }
+ Output {
+  name Output1
+  xpos 41
+  ypos 344
+ }
+push $N4cdedc00
+ Dot {
+  name Dot3
+  xpos 207
+  ypos 127
+ }
+ CurveTool {
+  operation "Auto Crop"
+  ROI {0 0 1600 900}
+  autocropdata {400 225 1200 675}
+  intensitydata {{curve}}
+  name CurveTool1
+  xpos 173
+  ypos 205
+ }
+end_group
