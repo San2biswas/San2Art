@@ -1,7 +1,7 @@
 ## Welcome <font color=crimson>San2 Art</font>
 
 Hi, I am Santu Biswas, called by San2. My website [San2Art](https://www.san2.co.in/) . There are some tools to help in work.
-This is my github website [San2Art](https://san2biswas.github.io/San2Art/).
+This is my github [website](https://san2biswas.github.io/San2Art/).
 
 
 ## <font color=00BFFF>Nuke</font>
