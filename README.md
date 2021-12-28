@@ -7,7 +7,7 @@ This website [https://san2biswas.github.io/San2Art/](https://san2biswas.github.i
 
 ## <font color=00BFFF>Nuke</font>
 
-### **_<font color=483D8B>S2 Toolset</font>_**
+### **_<font color=4169E1>S2 Toolset</font>_**
 
 
 
