@@ -1,8 +1,7 @@
 ## Welcome <font color=crimson>San2 Art</font>
 
-Hi, I am Santu Biswas, called by San2. My website [San2Art](https://www.san2.co.in/) .
-You can use the [editor on GitHub](https://github.com/San2biswas/San2Art/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
-This website [https://san2biswas.github.io/San2Art/](https://san2biswas.github.io/San2Art/)
+Hi, I am Santu Biswas, called by San2. My website [San2Art](https://www.san2.co.in/) . There are some tools to help in work.
+This is my github website [San2Art](https://san2biswas.github.io/San2Art/).
 
 
 ## <font color=00BFFF>Nuke</font>
@@ -26,9 +25,3 @@ This website [https://san2biswas.github.io/San2Art/](https://san2biswas.github.i
 
 A set of tools are created by regular nuke nodes by grouping and mixxing. This nodes help to work faster and efficient.
 
-
-
-```markdown
-Syntax highlighted code block
-
-gg
