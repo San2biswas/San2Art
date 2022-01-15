@@ -23,5 +23,5 @@ This is my github [website](https://san2biswas.github.io/San2Art/).
 
 
 
-A set of tools are created by regular nuke nodes by grouping and mixxing. This nodes help to work faster and efficient.
+A set of tools are created by regular nuke nodes by grouping, mixxing and using programming languages. This nodes help to work faster and efficient.
 
