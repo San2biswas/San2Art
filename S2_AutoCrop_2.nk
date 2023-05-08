@@ -1,25 +1,23 @@
 set cut_paste_input [stack 0]
-version 13.0 v4
+version 8.0 v1
 push $cut_paste_input
 Group {
  name S2_AutoCrop_1
  help "S2_AutoCrop v01\nby San2\n\nabout:-\nthis node is created to adjust the bounding box to the content (trim)\n \nuse:-\nGo! : start operation\nROI : limit the area\nAdjust BBox : add or decrease bbox area\n\nthanks and regards\nSan2\n\nany furthur issue feel free to contact me - \nsantu.santu.biswas@gmail.com"
  tile_color 0x7f00ffff
- label "adjust bbox : \[value adjustBbox]"
- note_font_color 0x6aff55ff
+ label "\[if \[value adjustBbox]>0 \{value adjustBbox\}]"
+ note_font_color 0xffffff
  selected true
- xpos -370
- ypos -15
+ xpos 141
+ ypos -60
  addUserKnob {20 autoCropTab l "Auto Crop"}
  addUserKnob {26 creator l "" +STARTLINE T "<br>\nS2_AutoCrop v01\n\nby <font color='red'>San2</font>"}
  addUserKnob {26 ""}
  addUserKnob {41 channels T CurveTool1.channels}
- addUserKnob {41 ROI T CurveTool1.ROI}
  addUserKnob {41 resetROI l Reset -STARTLINE T CurveTool1.resetROI}
  addUserKnob {41 go l Go! T CurveTool1.go}
  addUserKnob {26 ""}
- addUserKnob {7 adjustBbox l "Adjust BBox" R 0 10}
- adjustBbox 2
+ addUserKnob {7 adjustBbox l "Adjust BBox" R 0 100}
  addUserKnob {6 autoCropReformat l Reformat +STARTLINE}
  addUserKnob {6 autoCropIntersect l Intersect -STARTLINE}
  addUserKnob {6 autoCropBlackOutside l BlackOutside -STARTLINE}
@@ -27,25 +25,128 @@ Group {
 }
  Input {
   inputs 0
-  name InputSource
+  name Inputinput
+  selected true
   xpos 41
-  ypos 58
+  ypos -240
+ }
+ Dot {
+  name Dot1
+  xpos 75
+  ypos -161
+ }
+set N2584a3e0 [stack 0]
+ Dot {
+  name Dot5
+  xpos -82
+  ypos -161
+ }
+set N261876d0 [stack 0]
+ DeepToImage {
+  name DeepToImage1
+  xpos -116
+  ypos -117
+ }
+ Remove {
+  operation keep
+  channels rgba
+  name Remove1
+  xpos -116
+  ypos -93
+ }
+ Dot {
+  name Dot6
+  xpos -82
+  ypos -45
+ }
+push $N2584a3e0
+ Switch {
+  inputs 2
+  name Switch1
+  xpos 41
+  ypos -48
+ }
+set N292d0c20 [stack 0]
+ Clamp {
+  channels rgba
+  maximum_enable false
+  name Clamp1
+  label "black clamp"
+  xpos 41
+  ypos 27
+ }
+ Grade {
+  blackpoint 1e-005
+  name Grade1
+  label "kill exponential value"
+  xpos 41
+  ypos 63
  }
  Dot {
   name Dot2
   xpos 75
   ypos 127
  }
-set N4cdedc00 [stack 0]
+set N2584a750 [stack 0]
+ Dot {
+  name Dot3
+  xpos 207
+  ypos 127
+ }
+ CurveTool {
+  operation "Auto Crop"
+  channels rgba
+  ROI {{input.bbox.x} {input.bbox.y} {input.bbox.r} {input.bbox.t}}
+  autocropdata {400 225 1200 675}
+  intensitydata {{curve}}
+  name CurveTool1
+  xpos 173
+  ypos 206
+ }
+push $N292d0c20
+push 0
+push 0
+ Viewer {
+  inputs 3
+  input_number 2
+  input_process false
+  name Viewer1
+  xpos 258
+  ypos -122
+ }
+push $N261876d0
+ Dot {
+  name Dot7
+  xpos -282
+  ypos -161
+ }
+ Dot {
+  name Dot8
+  xpos -282
+  ypos 172
+ }
+ DeepCrop {
+  use_znear false
+  use_zfar false
+  bbox {{parent.Crop1.box} {parent.Crop1.box} {parent.Crop1.box} {parent.Crop1.box}}
+  name DeepCrop1
+  xpos -316
+  ypos 199
+ }
+ Dot {
+  name Dot9
+  xpos -282
+  ypos 341
+ }
+push $N2584a750
  Crop {
   box {{parent.CurveTool1.autocropdata-autoCropAdjustBbox} {parent.CurveTool1.autocropdata-autoCropAdjustBbox} {parent.CurveTool1.autocropdata+autoCropAdjustBbox} {parent.CurveTool1.autocropdata+autoCropAdjustBbox}}
   reformat {{parent.autoCropReformat}}
   intersect {{parent.autoCropIntersect}}
   crop {{parent.autoCropBlackOutside}}
   name Crop1
-  selected true
   xpos 41
-  ypos 203
+  ypos 204
   addUserKnob {20 User}
   addUserKnob {7 autoCropAdjustBbox l "Adjust Bbox" R 0 100}
   autoCropAdjustBbox {{int(parent.adjustBbox)}}
@@ -55,29 +156,21 @@ set N4cdedc00 [stack 0]
   addUserKnob {41 intersect_1 l intersect -STARTLINE T Crop1.intersect}
   addUserKnob {41 crop_1 l "black outside" -STARTLINE T Crop1.crop}
  }
+ Switch {
+  inputs 2
+  which {{parent.Switch1.which}}
+  name Switch2
+  xpos 41
+  ypos 338
+ }
  Dot {
   name Dot4
   xpos 75
-  ypos 266
+  ypos 459
  }
  Output {
   name Output1
   xpos 41
-  ypos 344
- }
-push $N4cdedc00
- Dot {
-  name Dot3
-  xpos 207
-  ypos 127
- }
- CurveTool {
-  operation "Auto Crop"
-  ROI {0 0 1600 900}
-  autocropdata {400 225 1200 675}
-  intensitydata {{curve}}
-  name CurveTool1
-  xpos 173
-  ypos 205
+  ypos 537
  }
 end_group
