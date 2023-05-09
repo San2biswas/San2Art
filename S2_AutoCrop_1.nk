@@ -3,16 +3,23 @@ version 8.0 v1
 push $cut_paste_input
 Group {
  name S2_AutoCrop_1
- help "S2_AutoCrop v01\nby San2\n\nabout:-\nthis node is created to adjust the bounding box to the content (trim)\n \nuse:-\nGo! : start operation\nROI : limit the area\nAdjust BBox : add or decrease bbox area\n\nthanks and regards\nSan2\n\nany furthur issue feel free to contact me - \nsantu.santu.biswas@gmail.com"
+ help "S2_AutoCrop v03\nby San2\n\nabout:-\nthis node is created to adjust the bounding box to the content (trim)\n \nuse:-\nGo! : start operation\nROI : limit the area\nAdjust BBox : add or decrease bbox area\n\nthanks and regards\nSan2\n\nany furthur issue feel free to contact me - \nsantu.santu.biswas@gmail.com"
  tile_color 0x7f00ffff
  label "\[if \[value adjustBbox]>0 \{value adjustBbox\}]"
  note_font_color 0xffffff
  selected true
- xpos 141
- ypos -60
+ xpos -135
+ ypos -14
  addUserKnob {20 autoCropTab l "Auto Crop"}
- addUserKnob {26 creator l "" +STARTLINE T "<br>\nS2_AutoCrop v01\n\nby <font color='red'>San2</font>"}
+ addUserKnob {26 creator l "" +STARTLINE T "S2_AutoCrop v03"}
  addUserKnob {26 ""}
+ addUserKnob {6 dp l deep +STARTLINE}
+ dp true
+ addUserKnob {6 blackclamp l "black clamp" -STARTLINE}
+ blackclamp true
+ addUserKnob {6 exponential -STARTLINE}
+ exponential true
+ addUserKnob {26 "" +STARTLINE}
  addUserKnob {41 channels T CurveTool1.channels}
  addUserKnob {41 resetROI l Reset -STARTLINE T CurveTool1.resetROI}
  addUserKnob {41 go l Go! T CurveTool1.go}
@@ -22,11 +29,13 @@ Group {
  addUserKnob {6 autoCropIntersect l Intersect -STARTLINE}
  addUserKnob {6 autoCropBlackOutside l BlackOutside -STARTLINE}
  autoCropBlackOutside true
+ addUserKnob {26 "" +STARTLINE}
+ addUserKnob {26 s2 l "" +STARTLINE T "this node is created by <font color=aqua>San2</font>"}
+ addUserKnob {26 mail2 l "" +STARTLINE T "<a href=\"santu.santu.biswas@gmail.com\">\n<font color= aqua>\nsantu.santu.biswas@gmail.com\n</font>\n</a>"}
 }
  Input {
   inputs 0
   name Inputinput
-  selected true
   xpos 41
   ypos -240
  }
@@ -35,13 +44,13 @@ Group {
   xpos 75
   ypos -161
  }
-set N2584a3e0 [stack 0]
+set N26897c80 [stack 0]
  Dot {
   name Dot5
   xpos -82
   ypos -161
  }
-set N261876d0 [stack 0]
+set N26898db0 [stack 0]
  DeepToImage {
   name DeepToImage1
   xpos -116
@@ -59,14 +68,16 @@ set N261876d0 [stack 0]
   xpos -82
   ypos -45
  }
-push $N2584a3e0
+push $N26897c80
  Switch {
   inputs 2
   name Switch1
+  selected true
   xpos 41
   ypos -48
+  disable {{!parent.dp}}
  }
-set N292d0c20 [stack 0]
+set N133f92e0 [stack 0]
  Clamp {
   channels rgba
   maximum_enable false
@@ -74,6 +85,7 @@ set N292d0c20 [stack 0]
   label "black clamp"
   xpos 41
   ypos 27
+  disable {{!parent.blackclamp}}
  }
  Grade {
   blackpoint 1e-005
@@ -81,13 +93,14 @@ set N292d0c20 [stack 0]
   label "kill exponential value"
   xpos 41
   ypos 63
+  disable {{!parent.exponential}}
  }
  Dot {
   name Dot2
   xpos 75
   ypos 127
  }
-set N2584a750 [stack 0]
+set N26897230 [stack 0]
  Dot {
   name Dot3
   xpos 207
@@ -103,7 +116,7 @@ set N2584a750 [stack 0]
   xpos 173
   ypos 206
  }
-push $N292d0c20
+push $N133f92e0
 push 0
 push 0
  Viewer {
@@ -114,7 +127,7 @@ push 0
   xpos 258
   ypos -122
  }
-push $N261876d0
+push $N26898db0
  Dot {
   name Dot7
   xpos -282
@@ -138,7 +151,7 @@ push $N261876d0
   xpos -282
   ypos 341
  }
-push $N2584a750
+push $N26897230
  Crop {
   box {{parent.CurveTool1.autocropdata-autoCropAdjustBbox} {parent.CurveTool1.autocropdata-autoCropAdjustBbox} {parent.CurveTool1.autocropdata+autoCropAdjustBbox} {parent.CurveTool1.autocropdata+autoCropAdjustBbox}}
   reformat {{parent.autoCropReformat}}
