@@ -1,0 +1,83 @@
+set cut_paste_input [stack 0]
+version 8.0 v1
+push $cut_paste_input
+Group {
+ name S2_RoundPixel_1
+ help "S2_RoundPixel v01\nby San2\n\nabout:-\nthis node is created to round pixel instead of square\n \nuse:-\nsize : size of pixel\n\nthanks and regards\nSan2\n\nany furthur issue feel free to contact me - \nsantu.santu.biswas@gmail.com"
+ tile_color 0x7f00ffff
+ note_font_color 0xffffff
+ selected true
+ xpos 836
+ ypos -164
+ addUserKnob {20 roundPixelTab l "Round Pxel"}
+ addUserKnob {26 creator l "" +STARTLINE T "S2_RoundPixel v01"}
+ addUserKnob {26 ""}
+ addUserKnob {41 size T Dilate1.size}
+ addUserKnob {26 ""}
+ addUserKnob {26 s2 l "" +STARTLINE T "this node is created by <font color=aqua>San2</font>"}
+ addUserKnob {26 mail2 l "" +STARTLINE T "<a href=\"santu.santu.biswas@gmail.com\">\n<font color= aqua>\nsantu.santu.biswas@gmail.com\n</font>\n</a>"}
+}
+ Input {
+  inputs 0
+  name Inputinput
+  xpos 41
+  ypos -240
+ }
+ Dot {
+  name Dot1
+  xpos 75
+  ypos -154
+ }
+ Dilate {
+  channels rgb
+  name Dilate1
+  xpos 41
+  ypos -106
+ }
+ Transform {
+  rotate 30
+  center {1024 778}
+  name Transform1
+  selected true
+  xpos 41
+  ypos -82
+ }
+ Dilate {
+  channels rgb
+  size {{parent.Dilate1.size}}
+  name Dilate2
+  xpos 41
+  ypos -55
+ }
+ Transform {
+  rotate {{"parent.Transform1.rotate * (-2)"}}
+  center {1024 778}
+  name Transform2
+  xpos 39
+  ypos -26
+ }
+ Dilate {
+  channels rgb
+  size {{parent.Dilate1.size}}
+  name Dilate3
+  xpos 39
+  ypos -2
+ }
+ Transform {
+  rotate {{parent.Transform1.rotate}}
+  center {1024 778}
+  name Transform3
+  xpos 39
+  ypos 22
+ }
+ Dot {
+  name Dot4
+  xpos 73
+  ypos 141
+ }
+ Output {
+  name Output1
+  xpos 39
+  ypos 219
+ }
+end_group
