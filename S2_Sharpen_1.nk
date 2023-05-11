@@ -1,18 +1,18 @@
 set cut_paste_input [stack 0]
-version 13.0 v4
+version 8.0 v1
 push $cut_paste_input
 Group {
  name S2_Sharpen_1
- help "S2_Sharpen v01\nby San2\n\nabout:-\nthis node is created to sharpen or increase the details. Also you can reduce the foggyness.\n \nuse:-\nEnhanced : increase or decrease the detail. \nFrequency : detect the frequncy need to enhance.\n\nthanks and regards\nSan2\n\nany furthur issue feel free to contact me - \nsantu.santu.biswas@gmail.com"
+ help "S2_Sharpen v02\nby San2\n\nabout:-\nthis node is created to sharpen or increase the details. Also you can reduce the foggyness.\n \nuse:-\nEnhanced : increase or decrease the detail. \nFrequency : detect the frequncy need to enhance.\n\nthanks and regards\nSan2\n\nany furthur issue feel free to contact me - \nsantu.santu.biswas@gmail.com"
  tile_color 0x7f00ffff
  label "Frequency : \[value sharpenFrequency] , Enhanced : \[value sharpenEnhanced]"
- note_font_color 0x6aff55ff
+ note_font_color 0xffffff
  selected true
- xpos -366
- ypos 636
+ xpos 255
+ ypos -25
  lock_connections true
  addUserKnob {20 Sharpen}
- addUserKnob {26 creator l "" +STARTLINE T "<br>\nS2_Sharpen v01\n\nby <font color='red'>San2</font>"}
+ addUserKnob {26 creator l "" +STARTLINE T "S2_Sharpen v02"}
  addUserKnob {26 ""}
  addUserKnob {7 sharpenFrequency l Frequency R 0 10}
  sharpenFrequency 4
@@ -20,7 +20,11 @@ Group {
  sharpenEnhanced 1
  addUserKnob {7 sharpenMix l Mix}
  sharpenMix 1
- addUserKnob {26 sharpenNote l "" +STARTLINE T "\n\n* Also you can reduce the foggyness by using a bigger value in Frequency"}
+ addUserKnob {26 "" +STARTLINE}
+ addUserKnob {26 sharpenNote l "" +STARTLINE T "* Also you can reduce the foggyness by using a bigger value in Frequency"}
+ addUserKnob {26 "" +STARTLINE}
+ addUserKnob {26 s2 l "" +STARTLINE T "this node is created by <font color = aqua>San2</font>"}
+ addUserKnob {26 ml l "" +STARTLINE T "<font color = aqua>santu.santu.biswas@gmail.com</font>"}
 }
  Input {
   inputs 0
@@ -33,7 +37,7 @@ Group {
   xpos -20
   ypos 150
  }
-set N79130c00 [stack 0]
+set Nf168c40 [stack 0]
  Dot {
   name Dot5
   xpos -192
@@ -44,7 +48,7 @@ set N79130c00 [stack 0]
   xpos -192
   ypos 190
  }
-set N79130400 [stack 0]
+set Nf16aea0 [stack 0]
  Dot {
   name Dot3
   xpos -302
@@ -55,7 +59,7 @@ set N79130400 [stack 0]
   xpos -302
   ypos 272
  }
-push $N79130400
+push $Nf16aea0
  Blur {
   channels rgb
   size {{parent.sharpenFrequency}}
@@ -84,7 +88,7 @@ push $N79130400
   xpos -192
   ypos 340
  }
-push $N79130c00
+push $Nf168c40
  Merge2 {
   inputs 2
   operation multiply
