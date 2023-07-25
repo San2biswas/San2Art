@@ -1,6 +1,6 @@
 ## Welcome to <font color=crimson>San2 Art</font> Github Page
 
-Hi, I am Santu Biswas, called by San2. My website [San2Art](https://www.san2.co.in/) . There are some tools to help in work.
+Hi, I am Santu Biswas, called by San2. There are some tools to help in work.
 
 
 
